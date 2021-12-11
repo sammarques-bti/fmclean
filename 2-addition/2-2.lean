@@ -1,0 +1,10 @@
+induction c with d hd,
+rw add_zero,
+rw add_zero,
+refl,
+
+rw add_succ b d,
+rw add_succ (a+ b) d,
+rw add_succ a (b+d),
+rw ← hd,
+refl,
