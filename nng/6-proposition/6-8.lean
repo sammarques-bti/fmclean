@@ -1,0 +1,7 @@
+repeat {rw not_iff_imp_false},
+intro h1,
+intro h2,
+intro p,
+apply h2,
+apply h1,
+exact p,
