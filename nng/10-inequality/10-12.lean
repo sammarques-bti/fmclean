@@ -1,0 +1,7 @@
+intro h,
+cases h with c h1,
+rw succ_add at h1,
+have h2 := succ_inj(h1),
+use c,
+rw h2,
+refl,

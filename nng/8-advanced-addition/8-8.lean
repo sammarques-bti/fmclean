@@ -1,0 +1,7 @@
+intro h1,
+rw ← add_zero a at h1,
+rw add_assoc at h1,
+rw zero_add b at h1,
+have h2:= add_left_cancel a b 0,
+have h3:=h2(h1),
+exact h3,

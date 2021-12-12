@@ -1,0 +1,5 @@
+cases h with c j,
+use c,
+rw succ_add,
+rw ← j,
+refl,
