@@ -1,5 +1,0 @@
-cases h with c h1,
-use c,
-rw h1,
-rw add_assoc,
-refl,

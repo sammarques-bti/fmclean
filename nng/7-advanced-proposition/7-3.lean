@@ -1,7 +1,0 @@
-intro h1,
-intro h2,
-cases h1 with p q,
-cases h2 with f1 f2,
-split,
-exact p,
-exact f2,

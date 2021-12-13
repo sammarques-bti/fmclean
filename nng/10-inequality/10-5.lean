@@ -1,7 +1,0 @@
---rw le_iff_exists_add at hab hbc ⊢,
-cases hbc with u hc,
-cases hab with v hb,
-rw hb at hc,
-use (v + u),
-rw ← add_assoc,
-exact hc,

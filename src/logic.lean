@@ -131,7 +131,14 @@ end
 theorem lem_irrefutable :
   ¬¬(P∨¬P)  :=
 begin
-  sorry,
+  intro n_ponq,
+  have r: P∨¬P,
+  by_cases p:P,
+  left,
+  exact p,
+  right,
+  exact p,
+  exact n_ponq r,  
 end
 
 
@@ -142,7 +149,13 @@ end
 theorem peirce_law_weak :
   ((P → Q) → P) → ¬¬P  :=
 begin
-  sorry,
+  intro piq_i_p,
+  intro np,
+  have piq : (P → Q),
+  intro p,
+  exfalso,
+  exact np p,
+  exact np(piq_i_p(piq)),
 end
 
 
@@ -180,7 +193,18 @@ end
 theorem demorgan_ndisj :
   ¬(P∨Q) → (¬P ∧ ¬Q)  :=
 begin
-  sorry,
+  intro n_poq,
+  split,
+  intro p,
+  have poq : (P∨Q),
+  left,
+  exact p,
+  exact n_poq poq,
+  intro q,
+  have poq : (P∨Q),
+  right,
+  exact q,
+  exact n_poq poq,
 end
 
 theorem demorgan_ndisj_converse :
@@ -266,7 +290,18 @@ end
 theorem distr_disj_conj_converse :
   (P∨Q)∧(P∨R) → P∨(Q∧R)  :=
 begin
-  sorry,
+  intro poq_e_por,
+  cases poq_e_por with poq por,
+  cases poq with p q,
+  left,
+  exact p,
+  cases por with p r,
+  left,
+  exact p,
+  right,
+  split,
+  exact q,
+  exact r,  
 end
 
 
@@ -390,25 +425,39 @@ variables P Q : U -> Prop
 theorem demorgan_exists_neg :
   (∃x, ¬P x) → ¬(∀x, P x)  :=
 begin
-  sorry,
+  intro some_dont_P, --exists x such that not P of x
+  intro all_P,  --for all x, P of x
+  cases some_dont_P with x nPx,
+  have Px := all_P x,
+  exact nPx Px,  
 end
 
 theorem demorgan_neg_exists :
   ¬(∃x, P x) → (∀x, ¬P x)  :=
 begin
-  sorry,
+  intro none_P,
+  intro x,
+  intro P,
+  apply none_P,
+  existsi x,
+  exact P,
 end
 
 theorem demorgan_forall_neg :
   (∀x, ¬P x) → ¬(∃x, P x)  :=
 begin
-  sorry,
+  intro all_nP,
+  intro some_P,
+  cases some_P with x P,
+  have nP := all_nP x,
+  exact nP P,
 end
 
 theorem demorgan_neg_forall :
   ¬(∀x, P x) → (∃x, ¬P x)  :=
 begin
-  sorry,
+  intro n_allP,
+  
 end
 
 theorem demorgan_exists_law :

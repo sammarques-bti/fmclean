@@ -1,5 +1,0 @@
-intro h1,
-cases h1 with p np,
-exfalso,
-apply np,
-exact p,

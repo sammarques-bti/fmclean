@@ -1,6 +1,0 @@
-intro f: (P → Q),
-intro g: (Q → F),
-intro h: P,
-apply g,
-apply f,
-exact h,
