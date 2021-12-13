@@ -23,7 +23,7 @@ begin
   exact h,
   intro g,
   exfalso,
-  exact g h,  
+  exact g h,
 end
 
 theorem doubleneg_law :
@@ -43,7 +43,18 @@ end
 
 ------------------------------------------------
 -- Comutatividade dos ∨,∧:
------------sorry,
+------------------------------------------------
+
+theorem disj_comm :
+  (P ∨ Q) → (Q ∨ P)  :=
+begin
+  intro poq,
+  cases poq with p q,
+  right,
+  exact p,
+  left,
+  exact q,
+end
 
 theorem conj_comm :
   (P ∧ Q) → (Q ∧ P)  :=
@@ -52,7 +63,7 @@ begin
   cases peq with p q,
   split,
   exact q,
-  exact p,  
+  exact p, 
 end
 
 
@@ -68,7 +79,7 @@ begin
   cases h with notp q,
   exfalso,
   exact notp p,
-  exact q,  
+  exact q, 
 end
 
 theorem disj_as_impl :
@@ -138,7 +149,7 @@ begin
   exact p,
   right,
   exact p,
-  exact n_ponq r,  
+  exact n_ponq r,
 end
 
 
@@ -190,7 +201,7 @@ end
 -- As leis de De Morgan para ∨,∧:
 ------------------------------------------------
 
-theorem demorgan_ndisj :
+theorem demorgan_disj :
   ¬(P∨Q) → (¬P ∧ ¬Q)  :=
 begin
   intro n_poq,
@@ -207,7 +218,7 @@ begin
   exact n_poq poq,
 end
 
-theorem demorgan_ndisj_converse :
+theorem demorgan_disj_converse :
   (¬P ∧ ¬Q) → ¬(P∨Q)  :=
 begin
   intro npenq,
@@ -218,7 +229,13 @@ begin
   exact nq q,
 end
 
-theorem demorgan_nconj_converse :
+theorem demorgan_conj :
+  ¬(P∧Q) → (¬Q ∨ ¬P)  :=
+begin
+sorry,
+end
+
+theorem demorgan_conj_converse :
   (¬Q ∨ ¬P) → ¬(P∧Q)  :=
 begin
   intro nqonp,
@@ -227,9 +244,20 @@ begin
   cases peq with p q,
   exact nq q,
   cases peq with p q,
-  exact np p,  
+  exact np p,
 end
 
+theorem demorgan_conj_law :
+  ¬(P∧Q) ↔ (¬Q ∨ ¬P)  :=
+begin
+  sorry,
+end
+
+theorem demorgan_disj_law :
+  ¬(P∨Q) ↔ (¬P ∧ ¬Q)  :=
+begin
+  sorry,
+end
 
 ------------------------------------------------
 -- Proposições de distributividade dos ∨,∧:
@@ -301,7 +329,7 @@ begin
   right,
   split,
   exact q,
-  exact r,  
+  exact r,
 end
 
 
@@ -319,7 +347,7 @@ begin
   split,
   exact p,
   exact q,
-  exact peq_i_r peq, 
+  exact peq_i_r peq,
 end
 
 theorem uncurry_prop :
@@ -403,7 +431,7 @@ begin
   exact p2,
   intro p,
   left,
-  exact p,
+  exact p,  
 end
 
 end propositional
@@ -422,17 +450,7 @@ variables P Q : U -> Prop
 -- As leis de De Morgan para ∃,∀:
 ------------------------------------------------
 
-theorem demorgan_exists_neg :
-  (∃x, ¬P x) → ¬(∀x, P x)  :=
-begin
-  intro some_dont_P, --exists x such that not P of x
-  intro all_P,  --for all x, P of x
-  cases some_dont_P with x nPx,
-  have Px := all_P x,
-  exact nPx Px,  
-end
-
-theorem demorgan_neg_exists :
+theorem demorgan_exists :
   ¬(∃x, P x) → (∀x, ¬P x)  :=
 begin
   intro none_P,
@@ -443,7 +461,7 @@ begin
   exact P,
 end
 
-theorem demorgan_forall_neg :
+theorem demorgan_exists_converse :
   (∀x, ¬P x) → ¬(∃x, P x)  :=
 begin
   intro all_nP,
@@ -453,21 +471,30 @@ begin
   exact nP P,
 end
 
-theorem demorgan_neg_forall :
+theorem demorgan_forall :
   ¬(∀x, P x) → (∃x, ¬P x)  :=
-begin
-  intro n_allP,
-  
-end
-
-theorem demorgan_exists_law :
-  (∃x, ¬P x) ↔ ¬(∀x, P x)  :=
 begin
   sorry,
 end
 
+theorem demorgan_forall_converse :
+  (∃x, ¬P x) → ¬(∀x, P x)  :=
+begin
+  intro some_dont_P, --exists x such that not P of x
+  intro all_P,  --for all x, P of x
+  cases some_dont_P with x nPx,
+  have Px := all_P x,
+  exact nPx Px,
+end
+
 theorem demorgan_forall_law :
-  (∀x, ¬P x) ↔ ¬(∃x, P x)  :=
+  ¬(∀x, P x) ↔ (∃x, ¬P x)  :=
+begin
+  sorry,
+end
+
+theorem demorgan_exists_law :
+  ¬(∃x, P x) ↔ (∀x, ¬P x)  :=
 begin
   sorry,
 end
@@ -561,13 +588,11 @@ end
 theorem forall_disj_as_disj_forall :
   (∀x, P x ∨ Q x) → (∀x, P x) ∨ (∀x, Q x)  :=
 begin
-  sorry,
 end
 
 theorem exists_conj_as_conj_exists_converse :
   (∃x, P x) ∧ (∃x, Q x) → (∃x, P x ∧ Q x)  :=
 begin
-  sorry,
 end
 
 ---------------------------------------------- -/
