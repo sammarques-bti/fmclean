@@ -579,19 +579,44 @@ end
 theorem exists_conj_as_conj_exists :
   (∃x, P x ∧ Q x) → (∃x, P x) ∧ (∃x, Q x)  :=
 begin
-  sorry,
+  intro some_P_e_Q,
+  cases some_P_e_Q with x P_e_Q,
+  cases P_e_Q with P Q,
+  split,
+  existsi x,
+  exact P,
+  existsi x,
+  exact Q,
 end
 
 theorem exists_disj_as_disj_exists :
   (∃x, P x ∨ Q x) → (∃x, P x) ∨ (∃x, Q x)  :=
 begin
-  sorry,
+  intro some_PoQ,
+  cases some_PoQ with x P_o_Q,
+  cases P_o_Q with P Q,
+  left,
+  existsi x,
+  exact P,
+  right,
+  existsi x,
+  exact Q,
+
 end
 
 theorem exists_disj_as_disj_exists_converse :
   (∃x, P x) ∨ (∃x, Q x) → (∃x, P x ∨ Q x)  :=
 begin
-  sorry,
+  intro someP_or_someQ,
+  cases someP_or_someQ with some_P some_Q,
+  cases some_P with x Px,
+  existsi x,
+  left,
+  exact Px,
+  cases some_Q with x Qx,
+  existsi x,
+  right,
+  exact Qx,
 end
 
 theorem forall_conj_as_conj_forall :
