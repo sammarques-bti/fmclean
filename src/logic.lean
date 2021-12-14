@@ -597,20 +597,40 @@ end
 theorem forall_conj_as_conj_forall :
   (∀x, P x ∧ Q x) → (∀x, P x) ∧ (∀x, Q x)  :=
 begin
-  sorry,
+  intro allP_e_allQ,
+  split,
+  intro x,
+  have P_e_Q := allP_e_allQ x,
+  cases P_e_Q with P Q,
+  exact P,
+  intro x,
+  have P_e_Q := allP_e_allQ x,
+  cases P_e_Q with P Q,
+  exact Q,
 end
 
 theorem forall_conj_as_conj_forall_converse :
   (∀x, P x) ∧ (∀x, Q x) → (∀x, P x ∧ Q x)  :=
 begin
-  sorry,
+  intro allP_e_allQ,
+  cases allP_e_allQ with allP allQ,
+  intro x,
+  split,
+  exact allP x,
+  exact allQ x,
 end
 
 
 theorem forall_disj_as_disj_forall_converse :
   (∀x, P x) ∨ (∀x, Q x) → (∀x, P x ∨ Q x)  :=
 begin
-  sorry,
+  intro allP_or_allQ,
+  intro x,
+  cases allP_or_allQ with allP allQ,
+  left,
+  exact allP x,
+  right,
+  exact allQ x,
 end
 
 
